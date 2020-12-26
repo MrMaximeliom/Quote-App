@@ -5,5 +5,8 @@ quote app is a daily quote app , which displays a quote every day to the user us
 ## Basic Functions of Quote App:
 this app has two basic functions which are:
 
-1- Display Daily Quote when first launched , and you can refresh to see another one.
-2- It has "love button" which saves the loved ones into a database and then displays that quotes in favourite screen.
+1. Display Daily Quote when first launched , and you can refresh to see another one.
+2. It has "love button" which saves the loved ones into a database and then displays that quotes in favourite screen.
+
+## Gentle Reminder
+I am a new flutter developer and this is one of my first humble tries :blush: so feel free to let me know how can i improve it more and more.
