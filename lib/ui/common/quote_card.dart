@@ -43,9 +43,6 @@ class _QuoteCardState extends State<QuoteCard> {
           status != "Unknown" ||
           status != "Failed to get connectivity.") {
         final response = await http.get('https://favqs.com/api/qotd');
-        // String tempQuoteText = this.quoteText;
-        // String tempQouteAuthor = this.quoteDate;
-        // String tempQuoteDAte = this.quoteDate;
 
         if (response.statusCode == 200) {
           var results = jsonDecode(response.body);
@@ -56,7 +53,18 @@ class _QuoteCardState extends State<QuoteCard> {
             this.quoteDate = results['qotd_date'];
           });
         } else {
-          getDataOffline();
+          final snackbar = SnackBar(
+            backgroundColor: Colors.black,
+            content: Text(
+              'Please connect to the Internet and refresh',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.white,
+              ),
+            ),
+            duration: Duration(seconds: 2),
+          );
+          Scaffold.of(context).showSnackBar(snackbar);
         }
       } else {
         getDataOffline();
@@ -70,12 +78,16 @@ class _QuoteCardState extends State<QuoteCard> {
 
   void getDataOffline() async {
     final result = await dbHelper.queryAllRows();
-    setState(() {
+    if (result.isEmpty) {
+      fetchQuote();
+    } else {
       result.forEach((row) {
-        this.quoteAuthor = row['quote_author'];
-        this.quoteText = row['quote_text'];
+        setState(() {
+          this.quoteAuthor = row['quote_author'];
+          this.quoteText = row['quote_text'];
+        });
       });
-    });
+    }
   }
 
   @override
