@@ -4,6 +4,7 @@ import 'package:beautiful/ui/pages/home.dart';
 import 'package:beautiful/ui/pages/liked.dart';
 
 void main() => runApp(MaterialApp(
+        debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.red,
